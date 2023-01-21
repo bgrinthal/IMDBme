@@ -1,0 +1,42 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Hello World</h1>
+    <div id="trending">
+
+    </div>
+</div>
+
+@section Scripts{
+    <script>
+        const trendingList = document.getElementById("trending")
+        const loadImdbDetails = async () => {
+            try {
+                const res = await fetch('https://api.themoviedb.org/3/trending/movie/week?api_key=5ce87294fb3a862a4f6352de3650c10e');
+                const movieData = await res.json();
+                displayTrending(movieData);
+                console.log(movieData.results[0]);
+            }
+            catch (err){
+                console.log(err)
+            }
+        }
+        loadImdbDetails();
+
+        const displayTrending = (data) => {
+            for (let i = 0; i < 9; i++) {
+            const htmlString = `
+                  <h4>${data.results[i].title}</h4>
+                  <h4>${data.results[i].poster_path}</h4>
+                  <h4>${data.results[i].release_date}</h4>
+                  <h4>${data.results[i].vote_average}</h4>
+                  </br>
+            `;
+            trendingList.innerHTML += htmlString;
+            }
+            
+        }
+    </script>
+}
