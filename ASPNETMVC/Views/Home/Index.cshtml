@@ -2,12 +2,15 @@
     ViewData["Title"] = "Home Page";
 }
 
+<head>
+<link rel="stylesheet" type="text/css" href="../Views/Home/Css/StyleSheet.css">
+</head>
 <div>
     <h1 class="display-4">Hello World</h1>
     <div class="text-center">   
         <div class="container-fluid">
             <h2>Trending</h2>
-            <div class="row flex-nowrap" id="trending">
+            <div class="scrolling-wrapper row flex-row flex-nowrap mt-4 pb-4 pt-2" id="trending">
 	        
             </div>
         </div>
@@ -49,7 +52,7 @@
             for (let i = 0; i < 9; i++) {
             const htmlString = `
               <div class="col-3">
-                  <div class="card" style="">
+                  <div class="c" style="">
                       <img class="card-img-top" style="" src="https://image.tmdb.org/t/p/original/${data.results[i].poster_path}" alt="${data.results[i].title} poster image">
                   </div>
               </div>
@@ -104,7 +107,7 @@
                 const htmlString = `
                       <div class="col-3">
                           <div class="card" style="">
-                              <img class="card-img-top" style="" src="https://image.tmdb.org/t/p/original/${data.results[i].poster_path}" alt="${data.results[i].title} poster image">
+                              <input type="image" class="card-img-top" style="" src="https://image.tmdb.org/t/p/original/${data.results[i].poster_path}" alt="${data.results[i].title} poster image">
                           </div>
                       </div>
 
