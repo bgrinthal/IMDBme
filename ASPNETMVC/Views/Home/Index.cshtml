@@ -2,21 +2,37 @@
     ViewData["Title"] = "Home Page";
 }
 
-<div class="text-center">
+<div>
     <h1 class="display-4">Hello World</h1>
-
-    <div class="container-fluid">
-        <h2>Bootstrap Horizontal Scrolling with Flexbox</h2>
-        <div class="row flex-nowrap" id="trending">
+    <div class="text-center">   
+        <div class="container-fluid">
+            <h2>Trending</h2>
+            <div class="row flex-nowrap" id="trending">
 	        
+            </div>
+        </div>
+        <div class="container-fluid">
+            <h2>TopRated</h2>
+            <div class="row flex-nowrap" id="top-rated">
+
+            </div>
+        </div>
+        <div class="container-fluid">
+            <h2>UpComing</h2>
+            <div class="row flex-nowrap" id="up-coming">
+            </div>
         </div>
     </div>
 </div>
 
 @section Scripts{
     <script>
-        const trendingList = document.getElementById("trending")
-        const loadImdbDetails = async () => {
+        const trendingList = document.getElementById("trending");
+        const topRatedList = document.getElementById("top-rated");
+        const upcomingList = document.getElementById("up-coming");
+
+
+        const loadTrending = async () => {
             try {
                 const res = await fetch('https://api.themoviedb.org/3/trending/movie/week?api_key=5ce87294fb3a862a4f6352de3650c10e');
                 const movieData = await res.json();
@@ -27,21 +43,76 @@
                 console.log(err)
             }
         }
-        loadImdbDetails();
+        loadTrending();
 
         const displayTrending = (data) => {
             for (let i = 0; i < 9; i++) {
             const htmlString = `
-                            <div class="col-3">
-              <div class="card" style="">
-                    <img class="card-img-top" style="" src="https://image.tmdb.org/t/p/original/${data.results[i].poster_path}" alt="${data.results[i].title} poster image">
+              <div class="col-3">
+                  <div class="card" style="">
+                      <img class="card-img-top" style="" src="https://image.tmdb.org/t/p/original/${data.results[i].poster_path}" alt="${data.results[i].title} poster image">
+                  </div>
               </div>
-        </div>
 
             `;
             trendingList.innerHTML += htmlString;
             }
-            
+        };
+
+        const loadTopRated = async () => {
+            try {
+                const res = await fetch('https://api.themoviedb.org/3/movie/top_rated?api_key=5ce87294fb3a862a4f6352de3650c10e&language=en-US&page=1');
+                const movieData = await res.json();
+                displayTopRated(movieData);
+                    console.log(movieData.results[0]);
+                }
+            catch (err) {
+                console.log(err)
+                }
         }
+        loadTopRated();
+
+        const displayTopRated = (data) => {
+            for (let i = 0; i < 9; i++) {
+                const htmlString = `
+                  <div class="col-3">
+                      <div class="card" style="">
+                          <img class="card-img-top" style="" src="https://image.tmdb.org/t/p/original/${data.results[i].poster_path}" alt="${data.results[i].title} poster image">
+                      </div>
+                  </div>
+
+                `;
+                topRatedList.innerHTML += htmlString;
+            }
+        }
+
+        const loadUpcoming = async () => {
+            try {
+                const res = await fetch('https://api.themoviedb.org/3/movie/upcoming?api_key=5ce87294fb3a862a4f6352de3650c10e&language=en-US&page=1');
+                const movieData = await res.json();
+                displayUpcoming(movieData);
+                console.log(movieData.results[0]);
+            }
+            catch (err) {
+                console.log(err)
+            }
+        }
+        loadUpcoming();
+
+        const displayUpcoming = (data) => {
+            for (let i = 0; i < 9; i++) {
+                const htmlString = `
+                      <div class="col-3">
+                          <div class="card" style="">
+                              <img class="card-img-top" style="" src="https://image.tmdb.org/t/p/original/${data.results[i].poster_path}" alt="${data.results[i].title} poster image">
+                          </div>
+                      </div>
+
+                    `;
+                upcomingList.innerHTML += htmlString;
+            }
+        }
+            
+        
     </script>
 }
