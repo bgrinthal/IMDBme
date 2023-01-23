@@ -4,8 +4,12 @@
 
 <div class="text-center">
     <h1 class="display-4">Hello World</h1>
-    <div id="trending">
 
+    <div class="container-fluid">
+        <h2>Bootstrap Horizontal Scrolling with Flexbox</h2>
+        <div class="row flex-nowrap" id="trending">
+	        
+        </div>
     </div>
 </div>
 
@@ -28,21 +32,11 @@
         const displayTrending = (data) => {
             for (let i = 0; i < 9; i++) {
             const htmlString = `
-                    <div class="container">
-                        <div class="row">
-                            <div class="card" style="width: 50%;">
-                                <img class="card-img-top" style="" src="https://image.tmdb.org/t/p/original/${data.results[i].poster_path}" alt="${data.results[i].title} poster image">                      
-                            </div>
-                            <div class="card" style="width: 50%;">
-                                <div class="card-body">
-                                    <h5 class="card-title">${data.results[i].title}</h5>
-                                    <p class="card-title">Released: ${data.results[i].release_date} Rating: ${data.results[i].vote_average}</p>
-                                    <p class="card-text">${data.results[i].overview}</p>
-                                    <a href="#" class="btn btn-primary">Go somewhere</a>
-                                </div>
-                            </div>
-                         </div>
-                    </div>
+                            <div class="col-3">
+              <div class="card" style="">
+                    <img class="card-img-top" style="" src="https://image.tmdb.org/t/p/original/${data.results[i].poster_path}" alt="${data.results[i].title} poster image">
+              </div>
+        </div>
 
             `;
             trendingList.innerHTML += htmlString;
