@@ -20,7 +20,6 @@ namespace ASPNETMVC.Models
         [Required]
         public string Name { get; set; }
         // To show the table name as a different name
-        [DisplayName("Display Order")]
         [Required]
         [Range(1, 10, ErrorMessage = "Display order must be greater than 0")]
         public int Rating { get; set; }

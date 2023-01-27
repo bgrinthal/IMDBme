@@ -5,7 +5,7 @@
 namespace ASPNETMVC.Migrations
 {
     /// <inheritdoc />
-    public partial class addCategoryToDatabase : Migration
+    public partial class AddCategoryToDatabase : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
