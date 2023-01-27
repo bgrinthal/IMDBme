@@ -32,7 +32,7 @@ namespace ASPNETMVC.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<int>("DisplayOrder")
+                    b.Property<int>("Rating")
                         .HasColumnType("int");
 
                     b.Property<string>("Name")
